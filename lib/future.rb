@@ -4,16 +4,15 @@ class Future
   end
 
   def run
-    @thread ||= Thread.new { @value = @callable.call }
+    @thread ||= Thread.new { @callable.call }
 
     self
   end
 
   def value
     run
-    @thread.join unless defined?(@value)
-
-    @value
+    
+    @thread.value
   end
 end
 
